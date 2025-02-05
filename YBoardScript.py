@@ -20,6 +20,11 @@ script_label = tk.Label(root, text="!Script()", fg='#000000')
 script_label.place(x=640, y=330, anchor='center')
 script_text = tk.Text(root, height=10, width=47)
 script_text.place(x=640, y=424, anchor='center')
+#!Notes()#
+notes_label = tk.Label(root, text="!Notes()", fg='#000000')
+notes_label.place(x=199, y=330, anchor='center')
+notes_text = tk.Text(root, height=10, width=47)
+notes_text.place(x=199, y=424, anchor='center')
 #!Import()#
 def import_text():
     file_path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
@@ -37,6 +42,9 @@ def import_text():
                 elif "Script()" in part:
                     script_text.delete("1.0", tk.END)
                     script_text.insert(tk.END, part.split("\n", 1)[1].strip())
+                elif "Notes()" in part:
+                    notes_text.delete("1.0", tk.END)
+                    notes_text.insert(tk.END, part.split("\n", 1)[1].strip())
         messagebox.showinfo("Yes!", "The information was successfully imported!")
 import_button = tk.Button(root, text="Import from .txt file", command=import_text)
 import_button.place(relx=0.5, y=520, anchor='center')
@@ -45,7 +53,8 @@ def export_text():
     glob_content = global_text.get("1.0", tk.END).strip()
     add_content = additional_text.get("1.0", tk.END).strip()
     script_content = script_text.get("1.0", tk.END).strip()
-    export_content = f"#!Glob()#\n{glob_content}\n#!Add()#\n{add_content}\n#!Script()#\n{script_content}"
+    notes_content = notes_text.get("1.0", tk.END).strip()
+    export_content = f"#!Glob()#\n{glob_content}\n#!Add()#\n{add_content}\n#!Script()#\n{script_content}\n#!Notes()#\n{notes_content}"
     file_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
     if file_path:
         with open(file_path, 'w', encoding='utf-8') as file:
