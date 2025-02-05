@@ -11,14 +11,14 @@ GExit(0)
 GFinalExit(0)
 #!Add()#
 Out(0)
+Out(1)
 In(0)
-In(1)
 HBtn(0)
 #!Script()#
 In(0);act(Out(0))
 Out(0);act(In(0))
-HBtn(0);act(In(1),tm(3))
+HBtn(0);act(Out(1),tm(3))
 In(0);act(DExit(0))
-FBtn(0);act(DExit(0))
+HBtn(0);act(DExit(0))
 #!Notes()#
 This .txt file is an example of using this utility.
